@@ -1,0 +1,5 @@
+[[redirects]]
+  # Redirect all traffic to index.html (useful for SPA like React)
+  from = "/*"
+  to = "/index.html"
+  status = 200
