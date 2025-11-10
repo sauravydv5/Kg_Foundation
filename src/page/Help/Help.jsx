@@ -1,13 +1,6 @@
+// src/pages/Help.jsx
 import React, { useState } from "react";
-import {
-  HelpCircle,
-  Search,
-  ChevronDown,
-  Upload,
-  Mail,
-  Phone,
-  MessageCircle,
-} from "lucide-react";
+import { HelpCircle, Search, ChevronDown, Upload } from "lucide-react";
 
 const Help = () => {
   const [openIndex, setOpenIndex] = useState(null);
@@ -29,11 +22,6 @@ const Help = () => {
       answer:
         "Our support team is available from 9 AM – 8 PM IST, Monday through Saturday.",
     },
-    {
-      question: "How do I contact support?",
-      answer:
-        "You can email us, call, or submit a support ticket directly through this page.",
-    },
   ];
 
   return (
@@ -54,7 +42,7 @@ const Help = () => {
             <Search className="text-gray-400 ml-3" size={20} />
             <input
               type="text"
-              placeholder="Search for help, topics, or FAQs..."
+              placeholder="Search for help or FAQs..."
               className="flex-1 px-3 py-2 outline-none text-gray-700"
             />
           </div>
@@ -84,9 +72,8 @@ const Help = () => {
                   }`}
                 />
               </button>
-
               {openIndex === index && (
-                <div className="px-6 pb-4 text-gray-600 border-t border-gray-100 animate-fadeIn">
+                <div className="px-6 pb-4 text-gray-600 border-t border-gray-100">
                   {faq.answer}
                 </div>
               )}
@@ -95,7 +82,7 @@ const Help = () => {
         </div>
       </section>
 
-      {/* 🧾 Submit a Ticket Section */}
+      {/* 🧾 Ticket Form */}
       <section className="bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50 py-16 px-6">
         <div className="max-w-3xl mx-auto text-center mb-10">
           <h2 className="text-3xl font-bold text-gray-800 mb-3">
@@ -103,172 +90,55 @@ const Help = () => {
           </h2>
           <p className="text-gray-600">
             Still need help? Fill out the form below and our support team will
-            reach out to you shortly.
+            reach out shortly.
           </p>
         </div>
 
         <form className="max-w-3xl mx-auto bg-white/80 backdrop-blur-md p-8 rounded-2xl shadow-lg space-y-5 border border-gray-100">
-          <div className="grid md:grid-cols-2 gap-5">
-            <div>
-              <label className="block text-gray-700 font-medium mb-1">
-                Full Name *
-              </label>
-              <input
-                type="text"
-                placeholder="John Doe"
-                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none placeholder-gray-400"
-                required
-              />
-            </div>
+          <input
+            type="text"
+            placeholder="Full Name"
+            required
+            className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
+          />
+          <input
+            type="email"
+            placeholder="Email Address"
+            required
+            className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
+          />
+          <textarea
+            rows="4"
+            placeholder="Describe your issue..."
+            className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
+          ></textarea>
 
-            <div>
-              <label className="block text-gray-700 font-medium mb-1">
-                Phone Number
-              </label>
-              <input
-                type="text"
-                placeholder="+91 98765 43210"
-                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none placeholder-gray-400"
-              />
-            </div>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-5">
-            <div>
-              <label className="block text-gray-700 font-medium mb-1">
-                Email Address *
-              </label>
-              <input
-                type="email"
-                placeholder="john.doe@example.com"
-                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none placeholder-gray-400"
-                required
-              />
-            </div>
-
-            <div>
-              <label className="block text-gray-700 font-medium mb-1">
-                Company Name
-              </label>
-              <input
-                type="text"
-                placeholder="ABC Pvt Ltd"
-                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none placeholder-gray-400"
-              />
-            </div>
-          </div>
-
-          <div>
-            <label className="block text-gray-700 font-medium mb-1">
-              Message Subject *
-            </label>
+          <div className="flex items-center gap-3">
             <input
-              type="text"
-              placeholder="Regarding account access issue"
-              className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none placeholder-gray-400"
-              required
+              type="file"
+              id="file"
+              className="hidden"
+              onChange={(e) =>
+                setFileName(e.target.files[0]?.name || "No file chosen")
+              }
             />
-          </div>
-
-          <div>
-            <label className="block text-gray-700 font-medium mb-1">
-              Ask Your Question *
+            <label
+              htmlFor="file"
+              className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg cursor-pointer hover:bg-indigo-700"
+            >
+              <Upload size={18} />
+              Choose File
             </label>
-            <textarea
-              placeholder="Describe your issue here..."
-              rows="5"
-              className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none placeholder-gray-400"
-              required
-            ></textarea>
-          </div>
-
-          <div>
-            <label className="block text-gray-700 font-medium mb-1">
-              Attachment
-            </label>
-            <div className="flex items-center gap-3 flex-wrap">
-              <input
-                type="file"
-                id="attachment"
-                className="hidden"
-                accept="image/*,.pdf,.docx,.txt"
-                onChange={(e) =>
-                  setFileName(e.target.files[0]?.name || "No file chosen")
-                }
-              />
-              <label
-                htmlFor="attachment"
-                className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg cursor-pointer hover:bg-indigo-700 transition"
-              >
-                <Upload size={18} />
-                Choose File
-              </label>
-              <span className="text-gray-600 text-sm truncate max-w-xs">
-                {fileName}
-              </span>
-            </div>
+            <span className="text-sm text-gray-600">{fileName}</span>
           </div>
 
           <button
             type="submit"
-            className="w-full bg-gradient-to-r from-indigo-600 to-pink-600 text-white py-3 rounded-lg font-semibold hover:opacity-90 transition transform hover:scale-[1.02]"
+            className="w-full bg-gradient-to-r from-indigo-600 to-pink-600 text-white py-3 rounded-lg font-semibold hover:scale-[1.02] transition"
           >
             Submit Ticket
           </button>
         </form>
-      </section>
-
-      {/* ☎️ Contact Section */}
-      <section className="bg-white py-16 px-6 border-t border-gray-100">
-        <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-          <div className="p-6 rounded-2xl shadow-md bg-gradient-to-br from-blue-50 to-indigo-100 hover:shadow-xl transition">
-            <Mail
-              size={36}
-              className="mx-auto text-indigo-600 mb-3 animate-pulse"
-            />
-            <h3 className="text-lg font-semibold mb-2">Email Us</h3>
-            <p className="text-sm text-gray-600 mb-2">
-              Send us your queries anytime
-            </p>
-            <a
-              href="mailto:support@helpdesk.com"
-              className="text-indigo-600 font-medium hover:underline"
-            >
-              support@helpdesk.com
-            </a>
-          </div>
-
-          <div className="p-6 rounded-2xl shadow-md bg-gradient-to-br from-purple-50 to-pink-100 hover:shadow-xl transition">
-            <Phone
-              size={36}
-              className="mx-auto text-purple-600 mb-3 animate-pulse"
-            />
-            <h3 className="text-lg font-semibold mb-2">Call Us</h3>
-            <p className="text-sm text-gray-600 mb-2">
-              Mon–Sat, 9 AM – 8 PM IST
-            </p>
-            <a
-              href="tel:+911234567890"
-              className="text-purple-600 font-medium hover:underline"
-            >
-              +91 12345 67890
-            </a>
-          </div>
-
-          <div className="p-6 rounded-2xl shadow-md bg-gradient-to-br from-pink-50 to-rose-100 hover:shadow-xl transition">
-            <MessageCircle
-              size={36}
-              className="mx-auto text-pink-500 mb-3 animate-pulse"
-            />
-            <h3 className="text-lg font-semibold mb-2">Live Chat</h3>
-            <p className="text-sm text-gray-600 mb-2">
-              Talk to our support team
-            </p>
-            <button className="px-4 py-1.5 bg-pink-500 text-white rounded-full hover:bg-pink-600 transition">
-              Start Chat
-            </button>
-          </div>
-        </div>
       </section>
     </div>
   );

@@ -13,6 +13,7 @@ import Help from "./page/Help/Help";
 import Pricing from "./page/Pricing/Pricing";
 import Services from "./page/Services/Services";
 import Footer from "./components/Footer";
+import Contact from "./components/Contact";
 
 function AppContent() {
   const location = useLocation();
@@ -38,6 +39,7 @@ function AppContent() {
         <Route path="/help" element={<Help />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/services" element={<Services />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
 
       {/* ✅ Conditionally show footer */}

@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Phone, Mail, Menu, X, Search, ShoppingCart, User } from "lucide-react";
 import Logo from "../../assets/logo.jpg";
-import contactBg from "../../assets/contactBg.jpg";
 import NavLinks from "../../components/Navlink";
 
 const Header = ({ cartCount = 0 }) => {
@@ -16,7 +15,7 @@ const Header = ({ cartCount = 0 }) => {
     <header className="sticky top-0 z-50 w-full">
       {/* 🌈 Top Contact Bar — Only on Home Page */}
       {isHome && (
-        <div className="hidden md:flex items-center justify-between bg-gradient-to-r from-fuchsia-600 via-pink-500 to-rose-400 text-white text-sm px-8 py-2">
+        <div className="hidden md:flex items-center justify-between bg-gradient-to-r from-pink-600 via-rose-500 to-fuchsia-500 text-white text-sm px-8 py-2">
           <div className="flex items-center gap-6">
             <a
               href="tel:+91 91554-24459"
@@ -51,34 +50,37 @@ const Header = ({ cartCount = 0 }) => {
       )}
 
       {/* 💎 Main Navbar */}
-      <div
-        className="flex flex-col backdrop-blur-xl bg-white/50 shadow-md"
-        style={{
-          backgroundImage: `url(${contactBg})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
-        <div className="flex items-center justify-between px-4 md:px-10 py-3 md:py-4 bg-gradient-to-r from-white/70 via-white/40 to-white/70 backdrop-blur-lg">
+      <div className="flex flex-col bg-gradient-to-r from-rose-50 via-pink-50 to-white shadow-md backdrop-blur-xl border-b border-rose-100">
+        <div className="flex items-center justify-between px-3 sm:px-6 md:px-10 py-3 md:py-4">
           {/* Left: Logo */}
           <Link to="/" className="flex items-center gap-3 md:gap-4">
-            <img
-              src={Logo}
-              alt="KG Foundation"
-              className="w-12 h-12 md:w-16 md:h-16 rounded-full border-2 border-white shadow-md object-cover"
-            />
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-tr from-pink-400 via-rose-500 to-fuchsia-500 rounded-full blur-sm opacity-40" />
+              <img
+                src={Logo}
+                alt="KG Foundation"
+                onError={(e) => {
+                  e.target.style.display = "none";
+                  e.target.nextSibling.style.display = "block";
+                }}
+                className="w-10 h-10 md:w-14 md:h-14 rounded-full border-2 border-rose-200 shadow-md object-cover relative z-10"
+              />
+              {/* fallback color circle */}
+              <div className="hidden w-10 h-10 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-pink-500 to-rose-600 border-2 border-rose-200 shadow-md relative z-10" />
+            </div>
+
             <div>
-              <h1 className="text-lg md:text-2xl font-bold text-rose-600 tracking-wide">
+              <h1 className="text-base sm:text-lg md:text-2xl font-bold text-rose-600 tracking-wide leading-tight">
                 KG FOUNDATION
               </h1>
-              <p className="text-xs md:text-sm italic text-gray-600">
+              <p className="text-[10px] sm:text-xs md:text-sm italic text-gray-600">
                 Empowering Minds, Building Futures
               </p>
             </div>
           </Link>
 
-          {/* Center: Scrollable Nav Links */}
-          <nav className="hidden md:flex gap-6 overflow-x-auto scrollbar-thin scrollbar-thumb-rose-400 scrollbar-track-transparent px-2">
+          {/* Center: Nav Links */}
+          <nav className="hidden md:flex gap-6 overflow-x-auto scrollbar-thin scrollbar-thumb-rose-300 scrollbar-track-transparent px-2">
             {NavLinks.map((link) => (
               <Link
                 key={link.name}
@@ -96,11 +98,11 @@ const Header = ({ cartCount = 0 }) => {
           </nav>
 
           {/* Right: Search + Cart + Login */}
-          <div className="flex items-center gap-3 md:gap-4">
-            {/* Search */}
+          <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
+            {/* Search Bar */}
             <div
-              className={`flex items-center border border-gray-300 rounded-full px-3 py-1 bg-white/60 shadow-sm transition-all duration-300 ${
-                searchOpen ? "w-56 md:w-64" : "w-32 md:w-40"
+              className={`flex items-center border border-gray-300 rounded-full px-3 py-1 bg-white/70 shadow-sm transition-all duration-300 focus-within:border-rose-400 ${
+                searchOpen ? "w-40 sm:w-52 md:w-64" : "w-28 sm:w-36 md:w-44"
               }`}
               onFocus={() => setSearchOpen(true)}
               onBlur={() => setSearchOpen(false)}
@@ -116,31 +118,31 @@ const Header = ({ cartCount = 0 }) => {
             {/* Cart */}
             <Link
               to="/cart"
-              className="relative flex items-center justify-center w-10 h-10 rounded-full bg-rose-100 hover:bg-rose-200 transition"
+              className="relative flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-rose-100 hover:bg-rose-200 transition"
             >
-              <ShoppingCart size={20} className="text-rose-600" />
+              <ShoppingCart size={18} className="text-rose-600" />
               {cartCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-yellow-400 text-rose-800 text-xs font-bold rounded-full px-1.5">
+                <span className="absolute -top-1 -right-1 bg-yellow-400 text-rose-800 text-[10px] font-bold rounded-full px-1.5">
                   {cartCount}
                 </span>
               )}
             </Link>
 
-            {/* Login */}
+            {/* Login Button */}
             <Link
               to="/login"
-              className="hidden md:flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-rose-600 to-pink-500 text-white font-medium hover:scale-105 transition"
+              className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r from-rose-600 to-pink-500 text-white font-medium hover:scale-105 transition"
             >
               <User size={16} />
               Login
             </Link>
 
-            {/* Mobile Menu Toggle */}
+            {/* Mobile Menu Icon */}
             <button
               onClick={() => setMenuOpen(!menuOpen)}
               className="md:hidden p-2 rounded-md hover:bg-rose-100 transition"
             >
-              {menuOpen ? <X size={24} /> : <Menu size={24} />}
+              {menuOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
           </div>
         </div>
