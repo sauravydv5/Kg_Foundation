@@ -1,12 +1,9 @@
 // src/pages/Dashboard/Dashboard.jsx
 import React from "react";
-import Header from "../../context/Header/Header";
 
 const Dashboard = () => {
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-rose-50 via-white to-indigo-100">
-      <Header />
-
       <div className="flex-1 flex flex-col items-center justify-center text-center px-6">
         {/* Card container */}
         <div className="bg-white shadow-2xl rounded-2xl p-10 max-w-lg w-full border border-rose-100 animate-fadeIn">

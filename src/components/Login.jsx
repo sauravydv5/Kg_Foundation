@@ -40,13 +40,13 @@ export default function BestLogin() {
 
     // Mock authentication (replace with backend call if needed)
     setTimeout(() => {
-      if (email === "user@example.com" && password === "password123") {
+      if (email === "user@gmail.com" && password === "password123") {
         const token = "mock_token_abc123";
         if (remember) localStorage.setItem("kg_token", token);
         else sessionStorage.setItem("kg_token", token);
-        navigate("/dashboard");
+        navigate("/");
       } else {
-        setError("Invalid credentials. Try user@example.com / password123");
+        setError("Invalid credentials. Try user@gmail.com / password123");
       }
       setLoading(false);
     }, 800);

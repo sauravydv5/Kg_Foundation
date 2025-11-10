@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import "./index.css";
 import Header from "./context/Header/Header";
 import Dashboard from "./page/Dashboard/Dashboard";
@@ -12,12 +12,22 @@ import Company from "./page/Company/Company";
 import Help from "./page/Help/Help";
 import Pricing from "./page/Pricing/Pricing";
 import Services from "./page/Services/Services";
+import Footer from "./components/Footer";
 
-function App() {
+function AppContent() {
+  const location = useLocation();
+
+  // ✅ Pages where Header/Footer should NOT appear
+  const hideLayoutPaths = ["/login", "/signup"];
+
+  const shouldHideLayout = hideLayoutPaths.includes(location.pathname);
+
   return (
-    <BrowserRouter>
+    <>
+      {/* ✅ Conditionally show header */}
+      {!shouldHideLayout && <Header />}
+
       <Routes>
-        {/* Dashboard route */}
         <Route path="/" element={<Dashboard />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
@@ -28,8 +38,18 @@ function App() {
         <Route path="/help" element={<Help />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/services" element={<Services />} />
-        {/* <Route path="/profile" element={<Profile />} /> */}
       </Routes>
+
+      {/* ✅ Conditionally show footer */}
+      {!shouldHideLayout && <Footer />}
+    </>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <AppContent />
     </BrowserRouter>
   );
 }

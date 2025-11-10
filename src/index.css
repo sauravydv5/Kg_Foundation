@@ -1,1 +1,13 @@
 @import "tailwindcss";
+
+/* index.css */
+.poppins-thin {
+    font-family: "Poppins", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+}
+
+/* Optionally apply globally */
+body {
+    font-family: "Poppins", sans-serif;
+}
