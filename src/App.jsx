@@ -3,14 +3,12 @@ import { BrowserRouter } from "react-router-dom";
 
 import "./index.css";
 
-import Header from "./Header";
-import Navbar from "./Navbar";
+import Header from "./context/Header/Header";
 
 function App() {
   return (
     <BrowserRouter>
       <Header />
-      <Navbar />
     </BrowserRouter>
   );
 }
