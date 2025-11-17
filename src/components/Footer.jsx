@@ -14,132 +14,133 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative bg-gradient-to-br from-rose-600 via-pink-500 to-fuchsia-600 text-white overflow-hidden">
-      {/* ✨ Top Glass Strip */}
-      <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-yellow-400 via-white to-yellow-400 animate-pulse"></div>
-
-      {/* 💎 Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-10 md:py-14">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-          {/* 🔹 Brand */}
-          <div>
-            <div className="flex items-center gap-3 mb-4">
-              <img
-                src={Logo}
-                alt="KG Foundation"
-                className="w-14 h-14 rounded-full border-2 border-white/40 shadow-lg object-cover"
-              />
-              <div>
-                <h2 className="text-xl font-bold">KG FOUNDATION</h2>
-                <p className="text-sm text-white/80 italic">
-                  Empowering Lives 🌍
-                </p>
-              </div>
-            </div>
-            <p className="text-sm text-white/80 leading-relaxed">
-              Creating opportunities through education, empowerment, and
-              sustainability. Together, we can make a difference.
-            </p>
-            <div className="mt-4 flex gap-3">
-              <a
-                href="/donate"
-                className="px-4 py-1.5 rounded-full bg-yellow-400 text-rose-800 font-semibold hover:scale-105 transition"
-              >
-                Donate
-              </a>
-              <a
-                href="/contact"
-                className="px-4 py-1.5 rounded-full border border-white/30 hover:bg-white/20 transition"
-              >
-                Contact
-              </a>
+    <footer className="bg-gradient-to-br from-rose-600 via-pink-500 to-fuchsia-600 text-white pt-12 pb-6">
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        {/* BRAND */}
+        <div>
+          <div className="flex items-center gap-3 mb-4">
+            <img
+              src={Logo}
+              alt="KG Foundation"
+              className="w-16 h-16 rounded-full object-cover shadow-lg border border-white/40"
+            />
+            <div>
+              <h2 className="text-xl font-bold">KG FOUNDATION</h2>
+              <p className="text-white/80 text-sm italic">
+                Empowering Lives 🌍
+              </p>
             </div>
           </div>
 
-          {/* 🔹 Links */}
-          <div>
-            <h4 className="text-lg font-semibold mb-3 border-b border-white/30 pb-1 inline-block">
-              Quick Links
-            </h4>
-            <ul className="space-y-2 text-sm text-white/80">
-              {["Home", "Shop", "Events", "Services", "Pricing"].map((item) => (
-                <li key={item}>
-                  <a
-                    href={`/${item.toLowerCase()}`}
-                    className="hover:text-yellow-300 transition"
-                  >
-                    {item}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <p className="text-white/80 text-sm leading-relaxed">
+            Creating opportunities through education, empowerment, healthcare
+            and sustainable community development.
+          </p>
 
-          {/* 🔹 Programs */}
-          <div>
-            <h4 className="text-lg font-semibold mb-3 border-b border-white/30 pb-1 inline-block">
-              Our Focus
-            </h4>
-            <ul className="space-y-2 text-sm text-white/80">
-              <li>Education & Scholarships</li>
-              <li>Women Empowerment</li>
-              <li>Healthcare & Nutrition</li>
-              <li>Environment & Clean Energy</li>
-              <li>Community Development</li>
-            </ul>
-          </div>
-
-          {/* 🔹 Contact */}
-          <div>
-            <h4 className="text-lg font-semibold mb-3 border-b border-white/30 pb-1 inline-block">
-              Contact Us
-            </h4>
-            <ul className="space-y-3 text-sm text-white/90">
-              <li className="flex items-start gap-3">
-                <MapPin size={18} className="text-yellow-300 mt-0.5" />
-                <p>123 Charity Street, New Delhi, India</p>
-              </li>
-              <li className="flex items-center gap-3">
-                <Phone size={18} className="text-yellow-300" />
-                <a
-                  href="tel:+919999999999"
-                  className="hover:text-yellow-300 transition"
-                >
-                  +91 99999 99999
-                </a>
-              </li>
-              <li className="flex items-center gap-3">
-                <Mail size={18} className="text-yellow-300" />
-                <a
-                  href="mailto:info@kgfoundation.org"
-                  className="hover:text-yellow-300 transition"
-                >
-                  info@kgfoundation.org
-                </a>
-              </li>
-            </ul>
+          {/* Buttons */}
+          <div className="flex gap-3 mt-4">
+            <a
+              href="/donate"
+              className="px-4 py-2 bg-yellow-400 text-rose-800 rounded-full font-semibold hover:scale-105 transition"
+            >
+              Donate
+            </a>
+            <a
+              href="/contact"
+              className="px-4 py-2 border border-white/40 rounded-full hover:bg-white/20 transition"
+            >
+              Contact
+            </a>
           </div>
         </div>
 
-        {/* 🔹 Divider */}
-        <div className="border-t border-white/20 mt-10 pt-6 flex flex-col md:flex-row items-center justify-between text-sm text-white/80">
-          <p>
-            © {currentYear} <span className="font-semibold">KG Foundation</span>
-            . All rights reserved.
-          </p>
-
-          {/* Social Icons */}
-          <div className="flex gap-3 mt-3 md:mt-0">
-            {[Facebook, Twitter, Instagram, Linkedin].map((Icon, i) => (
-              <a
-                key={i}
-                href="#"
-                className="p-2 rounded-full bg-white/10 hover:bg-yellow-400 hover:text-rose-700 transition transform hover:scale-110"
-              >
-                <Icon size={16} />
-              </a>
+        {/* QUICK LINKS (Based on Header NavLinks) */}
+        <div>
+          <h3 className="text-lg font-semibold mb-3 border-b border-white/40 pb-1">
+            Quick Links
+          </h3>
+          <ul className="space-y-2 text-white/80 text-sm">
+            {["Home", "Events", "Services", "Help"].map((item) => (
+              <li key={item}>
+                <a
+                  href={`/${item.toLowerCase()}`}
+                  className="hover:text-yellow-300 transition"
+                >
+                  {item}
+                </a>
+              </li>
             ))}
+          </ul>
+        </div>
+
+        {/* CONTACT */}
+        <div>
+          <h3 className="text-lg font-semibold mb-3 border-b border-white/40 pb-1">
+            Contact Us
+          </h3>
+
+          <div className="space-y-4 text-white/90 text-sm">
+            <div className="flex items-start gap-3">
+              <MapPin className="text-yellow-300 mt-1" size={18} />
+              <p>
+                DAYAL MARKET, DAUD BIGHA <br />
+                BHOOTHNATH ROAD, SBI BANK <br />
+                Patna, Bihar, India – 800026
+              </p>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <Phone className="text-yellow-300" size={18} />
+              <a
+                href="tel:+919939383830"
+                className="hover:text-yellow-300 transition"
+              >
+                +91 99393 83830
+              </a>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <Mail className="text-yellow-300" size={18} />
+              <a
+                href="mailto:kamlagauravfoundation@gmail.com"
+                className="hover:text-yellow-300 transition"
+              >
+                kamlagauravfoundation@gmail.com
+              </a>
+            </div>
           </div>
+        </div>
+
+        {/* SMALL GOOGLE MAP INSIDE GRID */}
+        <div>
+          <h3 className="text-lg font-semibold mb-3 border-b border-white/40 pb-1">
+            Location Map
+          </h3>
+
+          <iframe
+            title="Google Map"
+            src="https://www.google.com/maps?q=Bhoothnath+Road+Patna&output=embed"
+            className="w-full h-40 rounded-lg shadow-md border border-white/20"
+            allowFullScreen
+            loading="lazy"
+          ></iframe>
+        </div>
+      </div>
+
+      {/* BOTTOM AREA */}
+      <div className="border-t border-white/20 mt-8 pt-6 px-6 flex flex-col md:flex-row justify-between items-center text-sm text-white/80">
+        <p>© {currentYear} KG Foundation. All rights reserved.</p>
+
+        <div className="flex gap-3 mt-3 md:mt-0">
+          {[Facebook, Twitter, Instagram, Linkedin].map((Icon, i) => (
+            <a
+              key={i}
+              href="#"
+              className="p-2 bg-white/10 rounded-full hover:bg-yellow-400 hover:text-rose-700 transition transform hover:scale-110"
+            >
+              <Icon size={17} />
+            </a>
+          ))}
         </div>
       </div>
     </footer>

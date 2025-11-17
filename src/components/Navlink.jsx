@@ -1,13 +1,10 @@
-// ✅ Navigation Links List
 const NavLinks = [
   { name: "Home", path: "/" },
-  { name: "Shop", path: "/shop" },
   { name: "Events", path: "/events" },
-  { name: "Services", path: "/services" },
-  { name: "Pricing", path: "/pricing" },
-  { name: "Company", path: "/company" },
+  { name: "Success Stories", path: "/success-stories" },
+  { name: "About Us", path: "/about" },
   { name: "Help", path: "/help" },
-  { name: "Appointment", path: "/appointment" },
+  { name: "Contact Us", path: "/contact" },
 ];
 
 export default NavLinks;
