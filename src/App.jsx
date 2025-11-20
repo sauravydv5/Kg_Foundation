@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import "./index.css";
-import Header from "./context/Header/Header";
+
 import Dashboard from "./page/Dashboard/Dashboard";
 import Login from "./components/Login";
 import Signup from "./components/SignUp";
@@ -25,9 +25,6 @@ function AppContent() {
 
   return (
     <>
-      {/* ✅ Conditionally show header */}
-      {!shouldHideLayout && <Header />}
-
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/login" element={<Login />} />
