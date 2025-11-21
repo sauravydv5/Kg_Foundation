@@ -1,6 +1,6 @@
 import React from "react";
 
-import UnderDevelopment from "../../components/UnderDevelopment";
+import UnderDevelopment from "../../../components/UnderDevelopment";
 
 const Events = () => {
   return (

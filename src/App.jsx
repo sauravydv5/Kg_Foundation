@@ -2,18 +2,16 @@ import React from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import "./index.css";
 
-import Dashboard from "./page/Dashboard/Dashboard";
 import Login from "./components/Login";
 import Signup from "./components/SignUp";
-import Shop from "./page/Shop/Shop";
-import Appointment from "./page/Appointment/Appointment";
-import Events from "./page/Events/Events";
-import Company from "./page/Company/Company";
-import Help from "./page/Help/Help";
-import Pricing from "./page/Pricing/Pricing";
-import Services from "./page/Services/Services";
+import Help from "./page/Home/Help/Help";
+import UserDashboard from "./page/User/UserDashboard";
+
+import Events from "./page/Home/Events/Events";
+
 import Footer from "./components/Footer";
 import Contact from "./components/Contact";
+import Dashboard from "./page/Home/Dashboard/Dashboard";
 
 function AppContent() {
   const location = useLocation();
@@ -29,13 +27,12 @@ function AppContent() {
         <Route path="/" element={<Dashboard />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/shop" element={<Shop />} />
-        <Route path="/appointment" element={<Appointment />} />
+        <Route path="/user" element={<UserDashboard />} />
+
         <Route path="/events" element={<Events />} />
-        <Route path="/company" element={<Company />} />
+
         <Route path="/help" element={<Help />} />
-        <Route path="/pricing" element={<Pricing />} />
-        <Route path="/services" element={<Services />} />
+
         <Route path="/contact" element={<Contact />} />
       </Routes>
 

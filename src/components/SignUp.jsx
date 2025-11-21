@@ -1,4 +1,3 @@
-// src/pages/BestSignup.jsx
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
@@ -15,57 +14,56 @@ import Logo from "../assets/logo.jpg";
 
 export default function Signup() {
   const navigate = useNavigate();
+
   const [name, setName] = useState("");
   const [mobile, setMobile] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showPass, setShowPass] = useState(false);
+
+  const [showPass, setShowPass] = useState(false); // ← Fix added here
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  // Validation functions
-  const emailValid = (e) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(e.trim());
-  const mobileValid = (m) => /^[0-9]{10}$/.test(m.trim());
-
-  const validate = () => {
-    if (!name.trim() || !mobile.trim() || !email.trim() || !password) {
-      setError("Please fill in all fields.");
-      return false;
-    }
-    if (!mobileValid(mobile)) {
-      setError("Enter a valid 10-digit mobile number.");
-      return false;
-    }
-    if (!emailValid(email)) {
-      setError("Enter a valid email address.");
-      return false;
-    }
-    if (password.length < 6) {
-      setError("Password must be at least 6 characters.");
-      return false;
-    }
-    setError("");
-    return true;
-  };
-
+  // =============================
+  //  Form Submit Handler
+  // =============================
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!validate()) return;
     setLoading(true);
     setError("");
 
-    // Mock signup simulation
-    setTimeout(() => {
+    try {
+      const response = await fetch("http://localhost:3000/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          full_name: name,
+          mobile,
+          email,
+          password,
+        }),
+      });
+
+      const data = await response.json();
       setLoading(false);
-      alert("Signup successful! Please login.");
-      navigate("/login");
-    }, 1000);
+
+      if (!response.ok) {
+        setError(data.message || "Signup failed.");
+        return;
+      }
+
+      alert("Signup successful! Please Login.");
+      navigate("/user");
+    } catch (err) {
+      setLoading(false);
+      setError("Server error. Try again later.");
+    }
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-rose-50 via-white to-indigo-50 p-6">
       <div className="w-full max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 bg-white rounded-2xl shadow-xl overflow-hidden">
-        {/* Left Section - Info */}
+        {/* Left Section */}
         <div className="hidden md:flex flex-col justify-center items-center bg-rose-600 text-white p-8">
           <img
             src={Logo}
@@ -77,6 +75,7 @@ export default function Signup() {
             Become part of our mission to empower minds and build better
             futures.
           </p>
+
           <Link
             to="/login"
             className="mt-5 inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 px-4 py-2 rounded-full text-sm"
@@ -85,7 +84,7 @@ export default function Signup() {
           </Link>
         </div>
 
-        {/* Right Section - Signup Form */}
+        {/* Right Form Section */}
         <div className="p-8 md:p-10 flex flex-col justify-center">
           <div className="flex items-center gap-3 mb-6">
             <img
@@ -183,6 +182,7 @@ export default function Signup() {
               >
                 <Lock size={14} className="inline mr-1" /> Password
               </label>
+
               <button
                 type="button"
                 onClick={() => setShowPass(!showPass)}
@@ -205,40 +205,6 @@ export default function Signup() {
               )}
             </button>
           </form>
-
-          {/* Social Signup */}
-          <div className="mt-6">
-            <div className="flex items-center gap-3">
-              <div className="flex-1 h-px bg-gray-200" />
-              <div className="text-xs text-gray-400">or sign up with</div>
-              <div className="flex-1 h-px bg-gray-200" />
-            </div>
-
-            <div className="mt-3 grid grid-cols-2 gap-3">
-              <button
-                onClick={() => alert("Google OAuth placeholder")}
-                className="flex items-center justify-center gap-2 rounded-xl border px-3 py-2 bg-white"
-              >
-                <img
-                  src="https://www.svgrepo.com/show/355037/google.svg"
-                  alt="google"
-                  className="w-4 h-4"
-                />
-                Google
-              </button>
-              <button
-                onClick={() => alert("Facebook OAuth placeholder")}
-                className="flex items-center justify-center gap-2 rounded-xl border px-3 py-2 bg-white"
-              >
-                <img
-                  src="https://www.svgrepo.com/show/452196/facebook-1.svg"
-                  alt="facebook"
-                  className="w-4 h-4"
-                />
-                Facebook
-              </button>
-            </div>
-          </div>
 
           {/* Already have account */}
           <div className="mt-6 text-center text-sm text-gray-600">
